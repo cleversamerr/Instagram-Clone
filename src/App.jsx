@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { onSnapshot } from "firebase/firestore";
 import { postsRef } from "./firebase";
-import Header from "./components/Header";
-import Posts from "./components/Posts";
-import "./css/app.css";
+import Home from "./components/Home";
 
-function App() {
+const App = () => {
   const [posts, setPosts] = useState([]);
+  const [isModalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     onSnapshot(postsRef, (snapshot) => {
@@ -15,11 +14,13 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
-      <Header />
-      <Posts posts={posts} />
-    </div>
+    <Home
+      posts={posts}
+      showModal={isModalOpen}
+      onModalClose={() => setModalOpen(false)}
+      onModalOpen={() => setModalOpen(true)}
+    />
   );
-}
+};
 
 export default App;

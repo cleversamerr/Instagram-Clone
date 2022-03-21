@@ -1,9 +1,10 @@
 import React from "react";
-import Post from "./Post";
+import Post from "./common/components/Post";
+import "../css/posts.css";
 
-function Posts({ posts }) {
+const Posts = ({ posts }) => {
   return (
-    <div className="app__posts">
+    <div className="posts">
       {posts.map(({ id, username, avatarUrl, imageUrl, caption }) => (
         <Post
           key={id}
@@ -15,6 +16,6 @@ function Posts({ posts }) {
       ))}
     </div>
   );
-}
+};
 
 export default Posts;
