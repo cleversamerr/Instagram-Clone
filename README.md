@@ -16,6 +16,9 @@ Realtime Instagram clone with React and Firebase
 
 - React
 - Firebase
+- Material UI
+- React Flip Move
+- React Instagram Embed
 
 ### Installing
 
