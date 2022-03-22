@@ -2,7 +2,7 @@ import React from "react";
 import { auth } from "../firebase";
 import { Avatar, Button } from "@material-ui/core";
 
-function Header({ user, onSignIn, onSignUp }) {
+const Header = ({ user, onSignIn, onSignUp }) => {
   return (
     <div className="app__header">
       <img
@@ -27,6 +27,6 @@ function Header({ user, onSignIn, onSignUp }) {
       )}
     </div>
   );
-}
+};
 
 export default Header;
