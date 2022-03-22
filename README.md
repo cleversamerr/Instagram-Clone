@@ -4,7 +4,7 @@ Instagram clone
 
 ## 🔴 Live Demo
 
-Not live yet...
+[Click here...](https://samer-instagram.firebaseapp.com/)
 
 ## Description
 
