@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { db, auth } from "./firebase";
-import InstagramEmbed from "react-instagram-embed";
-import FlipMove from "react-flip-move";
-import { Button, Avatar, makeStyles, Modal, Input } from "@material-ui/core";
-import Post from "./components/Post";
 import ImageUpload from "./components/ImageUpload";
+import { db, auth } from "./firebase";
+import { Button, makeStyles, Modal, Input } from "@material-ui/core";
+import FlipMove from "react-flip-move";
+import InstagramEmbed from "react-instagram-embed";
+import Post from "./components/Post";
+import Header from "./components/Header";
 import "./css/app.css";
 
 function getModalStyle() {
@@ -45,17 +46,10 @@ function App() {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        // user is logged in...
-        console.log(authUser);
         setUser(authUser);
 
-        if (authUser.displayName) {
-          // dont update username
-        } else {
-          return authUser.updateProfile({
-            displayName: username,
-          });
-        }
+        if (!authUser.displayName)
+          return authUser.updateProfile({ displayName: username });
       } else {
         setUser(null);
       }
@@ -154,28 +148,8 @@ function App() {
           </form>
         </div>
       </Modal>
-      <div className="app__header">
-        <img
-          className="app__headerImage"
-          src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
-          alt=""
-        />
-        {user?.displayName ? (
-          <div className="app__headerRight">
-            <Button onClick={() => auth.signOut()}>Logout</Button>
-            <Avatar
-              className="app__headerAvatar"
-              alt={user.displayName}
-              src="/static/images/avatar/1.jpg"
-            />
-          </div>
-        ) : (
-          <form className="app__loginHome">
-            <Button onClick={() => setOpen(true)}>Login</Button>
-            <Button onClick={() => setRegisterOpen(true)}>Sign Up</Button>
-          </form>
-        )}
-      </div>
+
+      <Header user={user} onSignIn={setOpen} onSignUp={setRegisterOpen} />
 
       <div className="app__posts">
         <div className="app__postsLeft">
