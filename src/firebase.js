@@ -1,7 +1,4 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getStorage } from "firebase/storage";
-import { getFirestore, collection } from "firebase/firestore";
+import firebase from "firebase";
 
 const config = {
   apiKey: "AIzaSyADUZkrTbkcP7S4-LcTcA4_tOZsYryLyJM",
@@ -13,12 +10,9 @@ const config = {
   measurementId: "G-BZYXB4HXB9",
 };
 
-initializeApp(config);
+const firebaseApp = firebase.initializeApp(config);
+const db = firebaseApp.firestore();
+const auth = firebase.auth();
+const storage = firebase.storage();
 
-const db = getFirestore();
-const auth = getAuth();
-const storage = getStorage();
-
-const postsRef = collection(db, "posts");
-
-export { auth, storage, postsRef };
+export { db, auth, storage };
