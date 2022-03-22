@@ -30,7 +30,7 @@ Realtime Instagram clone with React and Firebase
 
 ## Help
 
-No problems detected yet
+- You may face a problem when installing dependencies, so I recommend you to write `npm install --force` to install them without problems.
 
 ## Authors
 
